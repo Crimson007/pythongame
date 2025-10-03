@@ -35,7 +35,7 @@ When i directly entered the string'five',the game stopped immediately and i got 
 
 Error Type that occurs:  ValueError: invalid literal for int() with base 10: 'five'
 
-Why Does it occur? "Your Answer Here"
+Why Does it occur? 
 
 It happens because the program is expecting a number (an integer) when using int(), but instead it receives the word "five". Python can only convert strings that look like numbers like '5' or '7'. "five" is not in numeric format so Python raises a ValueError.
 
