@@ -29,11 +29,15 @@ Note: Refer to the `Desired output` section
 Note: Complete the `Analysis` part below by replacing "Your Answer Here" with your answer.
 
 #### Analysis
-What error occurs if you put the string `"five"` when you prompt the user for the bet and guess (Remove "Your Answer Here" placeholder and replace with your answer below)
+What error occurs if you put the string `"five"` when you prompt the user for the bet and guess 
 
-Error Type that occurs: "Your Answer Here"
+When i directly entered the string'five',the game stopped immediately and i got the an error from the terminal
+
+Error Type that occurs:  ValueError: invalid literal for int() with base 10: 'five'
 
 Why Does it occur? "Your Answer Here"
+
+It happens because the program is expecting a number (an integer) when using int(), but instead it receives the word "five". Python can only convert strings that look like numbers like '5' or '7'. "five" is not in numeric format so Python raises a ValueError.
 
 #### Desired Output
 
@@ -84,6 +88,7 @@ Sorry, bet is too much. Game Over.
 The modified program will allow the user the option of playing twice.
 
 1. Copy your code from `simple_dice_game.py` and put in the proper location of `dice_game_double_play.py` i.e. below the comment `# YOUR CODE BELOW`
+
 
 2. Keep track of the winnings or losses from the Part 1. i.e. positive if the user won and negative if they lost.
 
