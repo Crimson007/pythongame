@@ -22,19 +22,19 @@ if play_choice == "yes":
         # Get the guess and convert to integer
         guess = int(input("A six sided die will be rolled. Guess the number? (1-6) "))
         
-        # Track total winnings/losses
-        total = 0
+        # Track results of each game
+        first_game_won = False
         
         # Check if guess matches the dice roll
         if guess == first_dice_roll:
             # Player wins first game!
             winnings = bet * 2
-            total += winnings
             print(f"Congratulations, you won {winnings}")
+            first_game_won = True
         else:
             # Player loses first game
-            total -= bet
             print(f"You lost {bet}")
+            first_game_won = False
         
         # Offer to play again with double the bet
         print()
@@ -42,14 +42,40 @@ if play_choice == "yes":
         play_again = input(f"We can play again if you bet {double_bet}? (yes/no) ")
         
         if play_again == "yes":
-            # Stage 2 will add the second game logic here
-            print("Second round coming in Stage 2...")
+            # Second round begins
+            second_guess = int(input("You know the game, guess the die number? (1-6) "))
+            
+            # Check second round result
+            if second_guess == second_dice_roll:
+                # Won second game
+                second_game_won = True
+            else:
+                # Lost second game
+                second_game_won = False
+            
+            # Calculate total and display outcome based on both games
+            if first_game_won and second_game_won:
+                # Win-Win: bet*2 + double_bet*2
+                total_winnings = (bet * 2) + (double_bet * 2)
+                print(f"Lucky you, two wins! Total winnings {total_winnings}")
+            elif not first_game_won and second_game_won:
+                # Lose-Win: -bet + double_bet*2
+                total_winnings = -bet + (double_bet * 2)
+                print(f"Lost first bet, but won second bet! Total winnings {total_winnings}")
+            elif not first_game_won and not second_game_won:
+                # Lose-Lose: -bet - double_bet
+                total_loss = bet + double_bet
+                print(f"You lost both bets. Total loss {total_loss}")
+            elif first_game_won and not second_game_won:
+                # Win-Lose: bet*2 - double_bet
+                print("Won first bet, but lost second bet. You are even.")
         else:
             # Player declines second round
-            if total > 0:
-                print(f"Thank you, you won {total}")
+            if first_game_won:
+                winnings = bet * 2
+                print(f"Thank you, you won {winnings}")
             else:
-                print(f"Thank you, you lost {abs(total)}")
+                print(f"Thank you, you lost {bet}")
         
 elif play_choice == "no":
     print("Okay you don't want to play. Game Over.")
